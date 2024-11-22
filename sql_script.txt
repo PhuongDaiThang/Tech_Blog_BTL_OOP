@@ -1,0 +1,47 @@
+-- create database techblog;
+use techblog;
+create table categories(
+	cID int auto_increment primary key not null,
+    cName varchar(100) not null,
+    cDes varchar(200)
+);
+
+create table users(
+	uid int auto_increment primary key not null,
+    username varchar(100) not null,
+    email varchar(100),
+    password varchar(100) not null,
+    gender varchar(20),
+    regdate timestamp default current_timestamp,
+    about mediumtext,
+    profile text,
+    role int not null
+);
+
+create table posts(
+	pid int auto_increment primary key not null,
+    pTitle varchar(150) not null,
+    pContent longtext,
+    pCode longtext,
+    pImg varchar(255),
+    pDate timestamp default current_timestamp, 
+    catId int,
+    userId int,
+    FOREIGN KEY (userID) REFERENCES users(uid),
+    FOREIGN KEY (catID) REFERENCES categories(cid)
+);
+
+create table likes(
+	pid int, 
+    uid int,
+    PRIMARY KEY (pid, uid),
+    FOREIGN KEY (pid) REFERENCES posts(pid),
+    FOREIGN KEY (uid) REFERENCES users(uid)
+);
+
+create table reports(
+	rid int auto_increment primary key not null,
+    rtpye text not null,
+    rcontent text not null,
+    rstatus text not null
+);
