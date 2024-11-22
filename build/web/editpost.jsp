@@ -44,7 +44,7 @@
         <jsp:include page="usernav.jsp" />
         <div class="container mt-5">
             <h2 class="text-center">Sửa bài viết</h2>
-            <form id="add-post-form" action="editpost" method="post" enctype="multipart/form-data">
+            <form id="add-post-form" action="editpost" method="post">
                 <input type="text" readonly hidden name="editpostid" value="<%= p.getpID() %>">
                 <div class="form-group">
                     <label for="category">Chọn chủ đề</label>
@@ -76,7 +76,7 @@
                     <input type="file" name="editpostpimg" id="image" class="form-control-file" accept="image/*">
                 </div>-->
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Sửa</button>
+                    <button type="submit" class="btn btn-primary">Sửa bài viết</button>
                 </div>
             </form>
         </div>

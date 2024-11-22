@@ -146,18 +146,15 @@ public class PostDAO extends DBContext{
     }
     
     public void updatePost(Post p) {
-        String sql = "update posts set ptitle = ?, pcontent = ?, pcode = ?, catid = ?, userid = ? where pid = ?";
+        String sql = "update posts set ptitle = ?, pcontent = ?, catid = ? where pid = ?";
 
         try {
             PreparedStatement st = conn.prepareStatement(sql);
 
             st.setString(1, p.getpTitle());
             st.setString(2, p.getpContent());
-            st.setString(3, p.getpCode());
-//            st.setString(4, p.getpImg());
-            st.setInt(4, p.getCatID());
-            st.setInt(5, p.getUserID());
-            st.setInt(6, p.getpID());
+            st.setInt(3, p.getCatID());
+            st.setInt(4, p.getpID());
 
             st.executeUpdate();
         } 

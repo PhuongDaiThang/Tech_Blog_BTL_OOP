@@ -102,25 +102,24 @@ public class editpostServlet extends HttpServlet {
             return;
         }
         PostDAO pDAO = new PostDAO();
+        int id = 0;
         String rawID = request.getParameter("editpostid");
         String postCatIDRaw = request.getParameter("editpostcid");
         String postTitle = request.getParameter("editpostptitle");
         String postContent = request.getParameter("editpostpcontent");
         try{
-            int id = Integer.parseInt(rawID);
+            id = Integer.parseInt(rawID);
             int cid = Integer.parseInt(postCatIDRaw);
             Post p = pDAO.getPostByID(id);
-            if(p != null){
                 p.setCatID(cid);
                 p.setpTitle(postTitle);
                 p.setpContent(postContent);
                 pDAO.updatePost(p);
-            }
         }
         catch(NumberFormatException e){
             e.printStackTrace();
         }
-        request.getRequestDispatcher("detail.jsp").forward(request, response);
+        response.sendRedirect("detail?postid="+id);
     }
 
     /**
